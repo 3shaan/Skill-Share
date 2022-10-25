@@ -5,8 +5,8 @@ const Hero = () => {
     return (
       <div>
         <section className="bg-gray-100">
-          <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[34rem] lg:py-16 lg:flex-row lg:items-center">
-            <div className="w-full lg:w-1/2 lg:ml-16 lg:mt-16">
+          <div className="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[38rem] lg:py-16 lg:flex-row lg:items-center">
+            <div className="w-full lg:w-1/2 lg:ml-16 lg:mt-10">
               <div className="lg:max-w-lg">
                 <h1 className="text-3xl font-bold tracking-wide  lg:text-5xl">
                   Learn, Practice ,Work Hard

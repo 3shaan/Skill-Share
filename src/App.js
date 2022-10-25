@@ -16,7 +16,10 @@ function App() {
       children: [
         {
           path: '/course',
-          element:<Course></Course>
+          element: <Course></Course>,
+          loader: () => {
+            return fetch("http://localhost:5000/course");
+          }
         },
         {
           path: 'login',
