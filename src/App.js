@@ -6,6 +6,7 @@ import Course from './Components/Course';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import MainPage from './Components/MainPage';
+import CourseDetals from './Components/CourseDetals';
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,10 @@ function App() {
         {
           path: '/',
           element:<MainPage></MainPage>
+        },
+        {
+          path: "/course/:id",
+          element:<CourseDetals></CourseDetals>
         }
       ]
     }

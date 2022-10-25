@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
-import { useLoaderData } from 'react-router-dom';
+import { authContect } from '../Context/Context';
 import CourseCard from './CourseCard';
 
 const Course = () => {
-    const courseData = useLoaderData();
-    console.log(courseData)
+        const { courseData } = useContext(authContect);
     return (
       <div className="w-11/12 mx-auto">
         <h1 className="text-4xl text-center mt-2 mb-5">Our All Course</h1>
