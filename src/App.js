@@ -5,6 +5,7 @@ import Error404 from './Components/Error404';
 import Course from './Components/Course';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
+import MainPage from './Components/MainPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,10 @@ function App() {
         {
           path: '/signup',
           element:<SignUp></SignUp>
+        },
+        {
+          path: '/',
+          element:<MainPage></MainPage>
         }
       ]
     }
