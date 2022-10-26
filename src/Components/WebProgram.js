@@ -2,13 +2,13 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useContext } from "react";
-import { authContect } from "../Context/Context";
+import { authContext } from "../Context/Context";
 import CourseCard from "./CourseCard";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const WebProgram = () => {
-  const { courseData } = useContext(authContect);
+  const { courseData } = useContext(authContext);
   const NextArrow = ({ className, style, onClick }) => {
     return (
       <div

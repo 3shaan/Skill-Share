@@ -22,7 +22,7 @@ const CourseCard = ({ courseData }) => {
           <p className="my-2 ">{desc_title}</p>
           <div className="flex justify-between text-lg">
             <p>
-              <DynamicStar rating={rating} width={20} height={20}></DynamicStar>{" "}
+              <DynamicStar rating={rating} width={20} height={20}></DynamicStar>
             </p>
             <p>${price}</p>
           </div>

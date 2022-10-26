@@ -6,7 +6,7 @@ import Course from './Components/Course';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import MainPage from './Components/MainPage';
-import CourseDetals from './Components/CourseDetals';
+import CourseDetals from "./Components/CourseDetals/CourseDetals";
 
 function App() {
   const router = createBrowserRouter([
@@ -36,7 +36,10 @@ function App() {
         },
         {
           path: "/course/:id",
-          element:<CourseDetals></CourseDetals>
+          element: <CourseDetals></CourseDetals>,
+          loader: async ({ params }) => {
+            return fetch(`http://localhost:5000/course/${params.id}`);
+          }
         }
       ]
     }
