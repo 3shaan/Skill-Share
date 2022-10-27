@@ -39,19 +39,22 @@ const Context = ({ children }) => {
   // user monitor function useEffect
 
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe =  onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
         console.log(currentUser);
-        setLoading(false);
       }
+      setLoading(false);
     });
+
+    return () => {
+      unsubscribe();
+    }
   }, []);
 
   //logout function
 
   const logOut = () => {
-    // setLoading(false);
     setUser(null);
     return signOut(auth);
   };
@@ -59,14 +62,12 @@ const Context = ({ children }) => {
   //sign up function
 
   const emailSignUp = (email, password) => {
-    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // sign in function
 
   const signInUser = (email, password) => {
-    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
