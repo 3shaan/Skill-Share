@@ -42,20 +42,22 @@ const WebProgram = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto my-10 relative">
-      <h1 className="text-3xl font-semibold text-center">
-        Our Web Technology Courses
-      </h1>
-      <hr className="w-5/12 mx-auto my-1 border bg-gray-700" />
-      <Slider {...settings} className="mt-3">
-        {courseData?.map((data) => {
-          return (
-            <div>
-              <CourseCard courseData={data}></CourseCard>
-            </div>
-          );
-        })}
-      </Slider>
+    <div>
+      <div className="w-11/12 mx-auto my-10 relative">
+        <h1 className="text-3xl font-semibold text-center">
+          Our Web Technology Courses
+        </h1>
+        <hr className="w-5/12 mx-auto my-1 border bg-gray-700" />
+        <Slider {...settings} className="mt-3">
+          {courseData?.map((data) => {
+            return (
+              <div className="my-3" key={data.id}>
+                <CourseCard courseData={data}></CourseCard>
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
     </div>
   );
 };
