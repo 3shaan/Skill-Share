@@ -1,5 +1,6 @@
 import React from 'react';
 import Contact from './Contact';
+import Footer from './Footer';
 import Hero from './Hero';
 import WebProgram from './WebProgram';
 
@@ -8,9 +9,8 @@ const MainPage = () => {
       <div>
         <Hero></Hero>
         <WebProgram></WebProgram>
-        <div className='mt-10'>
-          <Contact></Contact>
-        </div>
+        <Contact></Contact>
+        <Footer></Footer>
       </div>
     );
 };

@@ -6,6 +6,8 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { authContext } from '../Context/Context';
+import ForgotPassword from './ForgotPassword';
+import { useState } from 'react';
 
 const Login = () => {
   const {
@@ -19,34 +21,42 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
+  const [isOpen, setOpen] = useState(false);
+  const [formError, setFormError] = useState(null);
 
   const onsubmit = (data, e) => {
     e.preventDefault();
     const { email, password } = data;
-    console.log(email, password);
     signInUser(email, password)
       .then((result) => {
-          navigate(from, { replace: true });
+        navigate(from, { replace: true });
+        
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setFormError(error));
   };
 
   // google sign in
 
   const gooleSign = () => {
     googleSignIn()
-      .then(() => {})
-      .catch((error) => console.log(error));
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
+      .catch((error) => setFormError(error));
   };
 
   // github sign in
 
   const githubSign = () => {
     githubSignIn()
-      .then(() => {})
-      .catch((error) => console.log(error));
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
+      .catch((error) => setFormError(error));
   };
 
+  
+  
   return (
     <div className="flex lg:mt-10">
       <div className="hidden lg:block mt-10 pl-20">
@@ -71,8 +81,9 @@ const Login = () => {
 
                 <input
                   {...register("email", { required: true })}
+                  onFocus={() => setFormError("")}
                   name="email"
-                  type="Email"
+                  type="email"
                   className="block w-full py-3 text-black  border rounded-md px-11 border-gray-600 focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Email"
                 />
@@ -92,22 +103,33 @@ const Login = () => {
 
                 <input
                   {...register("password", { required: true })}
+                  onFocus={() => setFormError("")}
                   name="password"
                   type="password"
                   className="block w-full py-3 text-black  border rounded-md px-11 border-gray-600 focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Password"
                 />
               </div>
+              <p
+                onClick={() => setOpen(true)}
+                className="text-xs text-right hover:underline hover:text-blue-700 cursor-pointer"
+              >
+                forgate password?
+              </p>
+
               {errors.password?.type === "required" && (
                 <p role="alert" className="text-red-700">
                   Password is required*
                 </p>
               )}
             </div>
+            {formError && (
+              <p className="text-red-700 text-xs">{formError.message}</p>
+            )}
 
             <div className="mt-6">
               <button className="w-full px-4 py-2 rounded-md  focus:outline-none btn text-white bg-blue-700 hover:bg-orange-700">
-                Sign Up
+                Log In
               </button>
             </div>
           </form>
@@ -156,6 +178,7 @@ const Login = () => {
           </p>
         </div>
       </div>
+      <ForgotPassword open={isOpen} setOpen={setOpen}></ForgotPassword>
     </div>
   );
 };

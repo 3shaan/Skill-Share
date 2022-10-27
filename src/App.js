@@ -1,16 +1,16 @@
-import './App.css';
+import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from './Components/Root';
-import Error404 from './Components/Error404';
-import Course from './Components/Course';
-import Login from './Components/Login';
-import SignUp from './Components/SignUp';
-import MainPage from './Components/MainPage';
+import Root from "./Components/Root";
+import Error404 from "./Components/Error404";
+import Course from "./Components/Course";
+import Login from "./Components/Login";
+import SignUp from "./Components/SignUp";
+import MainPage from "./Components/MainPage";
 import CourseDetals from "./Components/CourseDetals/CourseDetals";
-import CheckOut from './Components/Checkout/CheckOut';
-import PrivateRoute from './Components/PrivateRoute';
-import Blogs from './Components/Blogs/Blogs';
-import FAQ from './Components/FAQ';
+import CheckOut from "./Components/Checkout/CheckOut";
+import PrivateRoute from "./Components/PrivateRoute";
+import Blogs from "./Components/Blogs/Blogs";
+import FAQ from "./Components/FAQ";
 
 function App() {
   const router = createBrowserRouter([
@@ -23,7 +23,9 @@ function App() {
           path: "/course",
           element: <Course></Course>,
           loader: () => {
-            return fetch("http://localhost:5000/course");
+            return fetch(
+              "https://assignment-10-server-side-peach.vercel.app/course"
+            );
           },
         },
         {
@@ -42,7 +44,9 @@ function App() {
           path: "/course/:id",
           element: <CourseDetals></CourseDetals>,
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/course/${params.id}`);
+            return fetch(
+              `https://assignment-10-server-side-peach.vercel.app/course/${params.id}`
+            );
           },
         },
         {
@@ -53,15 +57,19 @@ function App() {
             </PrivateRoute>
           ),
           loader: async ({ params }) => {
-            return fetch(`http://localhost:5000/course/${params.id}`);
+            return fetch(
+              `https://assignment-10-server-side-peach.vercel.app/course/${params.id}`
+            );
           },
         },
         {
           path: "/blogs",
           element: <Blogs />,
           loader: () => {
-            return fetch("http://localhost:5000/blogs");
-          }
+            return fetch(
+              "https://assignment-10-server-side-peach.vercel.app/blogs"
+            );
+          },
         },
         {
           path: "/faq",
@@ -71,12 +79,7 @@ function App() {
     },
   ]);
 
-
-  return (
-    <RouterProvider router={router}>
-      
-    </RouterProvider>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

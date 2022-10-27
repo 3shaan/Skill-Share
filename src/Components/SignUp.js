@@ -2,12 +2,13 @@ import React from "react";
 import { BsGithub, BsGoogle, BsUpload } from "react-icons/bs";
 import { AiOutlineMail, AiOutlineUserAdd } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { authContext } from "../Context/Context";
 import { getAuth, updateProfile } from "firebase/auth";
 import app from "../FireBase/FireBase.config";
+import { useState } from "react";
 
 const auth = getAuth(app);
 
@@ -18,42 +19,42 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
   const { emailSignUp, googleSignIn, githubSignIn } = useContext(authContext);
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
+  // email passwor sign up
   const onsubmit = (data) => {
     const { name, url, email, password } = data;
-
-    // email passwor sign up
-
     emailSignUp(email, password)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
         console.log(user);
         updateProfile(auth.currentUser, {
-          displayName:name , photoURL:url
+          displayName: name,
+          photoURL: url,
         })
-          .then(() => { })
-        .catch(error=>console.log(error))
+          .then(() => {})
+          .catch((error) => setError(error));
+        navigate("/");
       })
-    .catch(error=>console.log(error))
+      .catch((error) => setError(error));
   };
 
   // google sign up
 
   const gooleSign = () => {
     googleSignIn()
-      .then(() => { })
-    .catch(error=>console.log(error))
-  }
-  
+      .then(() => {})
+      .catch((error) => setError(error));
+  };
+
   // github sign up
 
   const githubSign = () => {
     githubSignIn()
-      .then(() => { })
-    .catch(error => console.log(error))
-  }
-
-  
+      .then(() => {})
+      .catch((error) => setError(error));
+  };
 
   return (
     <div className="flex mt-10">
@@ -78,6 +79,7 @@ const SignUp = () => {
                 </span>
 
                 <input
+                  onFocus={() => setError("")}
                   name="name"
                   {...register("name", {
                     required: true,
@@ -101,18 +103,14 @@ const SignUp = () => {
                 </span>
 
                 <input
+                  onFocus={() => setError("")}
                   name="url"
-                  {...register("url", { required: true })}
+                  {...register("url")}
                   type="text"
                   className="block w-full py-3 text-black  border rounded-md px-11 border-gray-600 focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                   placeholder="Photo URL"
                 />
               </div>
-              {errors.url?.type === "required" && (
-                <p role="alert" className="text-red-700">
-                  Photo URLis required*
-                </p>
-              )}
             </div>
             <div className="my-2">
               <label>Email</label>
@@ -122,6 +120,7 @@ const SignUp = () => {
                 </span>
 
                 <input
+                  onFocus={() => setError("")}
                   name="email"
                   {...register("email", { required: true })}
                   type="Email"
@@ -143,6 +142,7 @@ const SignUp = () => {
                 </span>
 
                 <input
+                  onFocus={() => setError("")}
                   name="password"
                   {...register("password", { required: true })}
                   type="password"
@@ -156,6 +156,7 @@ const SignUp = () => {
                 </p>
               )}
             </div>
+            {error && <p className="text-red-700 text-sm">{error.message}</p>}
 
             <div className="mt-6">
               <button className="w-full px-4 py-2 rounded-md  focus:outline-none btn text-white bg-blue-700 hover:bg-orange-700">

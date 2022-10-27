@@ -3,7 +3,17 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import app from "../FireBase/FireBase.config";
 
 export const authContext = createContext();
@@ -16,12 +26,14 @@ const Context = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
-  // data load useEffect 
+  // data load useEffect
 
   useEffect(() => {
-    axios.get("http://localhost:5000/course").then((res) => {
-      setCourseData(res.data);
-    });
+    axios
+      .get("https://assignment-10-server-side-peach.vercel.app/course")
+      .then((res) => {
+        setCourseData(res.data);
+      });
   }, []);
 
   // user monitor function useEffect
@@ -39,10 +51,10 @@ const Context = ({ children }) => {
   //logout function
 
   const logOut = () => {
-    setLoading(true);
+    // setLoading(false);
     setUser(null);
     return signOut(auth);
-}
+  };
 
   //sign up function
 
@@ -56,24 +68,29 @@ const Context = ({ children }) => {
   const signInUser = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
-  }
-  
+  };
+
   // google sign in
 
   const googleSignIn = () => {
-    setLoading(true);
+    
     return signInWithPopup(auth, googleProvider);
   };
 
   // github sign in
 
   const githubSignIn = () => {
-    setLoading(true);
+    
     return signInWithPopup(auth, githubProvider);
-  }
+  };
 
+  // password reset email
 
-  // context value 
+  const passwordReset = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
+  // context value
 
   const contextValue = {
     courseData,
@@ -84,6 +101,7 @@ const Context = ({ children }) => {
     googleSignIn,
     githubSignIn,
     isLoading,
+    passwordReset,
   };
 
   return (
