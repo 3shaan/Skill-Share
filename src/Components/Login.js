@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BsGithub, BsGoogle } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -16,13 +16,17 @@ const Login = () => {
 
   const { signInUser, googleSignIn, githubSignIn } = useContext(authContext);
 
-  const onsubmit = (data) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+
+  const onsubmit = (data, e) => {
+    e.preventDefault();
     const { email, password } = data;
     console.log(email, password);
     signInUser(email, password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+          navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };

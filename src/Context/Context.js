@@ -12,6 +12,7 @@ const auth = getAuth(app);
 const Context = ({ children }) => {
   const [courseData, setCourseData] = useState(null);
   const [user, setUser] = useState(null);
+  const [isLoading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
@@ -30,6 +31,7 @@ const Context = ({ children }) => {
       if (currentUser) {
         setUser(currentUser);
         console.log(currentUser);
+        setLoading(false);
       }
     });
   }, []);
@@ -37,30 +39,36 @@ const Context = ({ children }) => {
   //logout function
 
   const logOut = () => {
+    setLoading(true);
+    setUser(null);
     return signOut(auth);
 }
 
   //sign up function
 
   const emailSignUp = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // sign in function
 
-  const signInUser = (email,password) => {
+  const signInUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   }
   
   // google sign in
 
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // github sign in
 
   const githubSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, githubProvider);
   }
 
@@ -75,6 +83,7 @@ const Context = ({ children }) => {
     signInUser,
     googleSignIn,
     githubSignIn,
+    isLoading,
   };
 
   return (

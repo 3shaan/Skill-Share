@@ -9,6 +9,7 @@ import { authContext } from "../Context/Context";
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const { logOut, user } = useContext(authContext);
+  const [isToggle, setToggle] = useState(true)
 
   const signout = () => {
     logOut()
@@ -65,25 +66,25 @@ const Header = () => {
                 >
                   Course
                 </Link>
-                <a
-                  href="."
+                <Link
+                  to={"/blogs"}
                   className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:underline hover:text-orange-600 "
                 >
                   Blogs
-                </a>
-                <a
-                  href="."
+                </Link>
+                <Link
+                  to={"/faq"}
                   className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0  hover:underline hover:text-orange-600 "
                 >
-                  About Us
-                </a>
+                  FAQ
+                </Link>
               </div>
 
               <div className="flex items-center mt-4 lg:mt-0">
                 {user?.uid ? (
                   <div
-                    type="button"
-                    className="flex items-center focus:outline-none"
+                    className="flex items-center focus:outline-none tooltip tooltip-bottom"
+                    data-tip={`${user?.displayName}`}
                     aria-label="toggle profile dropdown"
                   >
                     <div></div>
@@ -140,6 +141,12 @@ const Header = () => {
                   Log out
                 </button>
               )}
+              <input
+                onClick={() => setToggle(!isToggle)}
+                type="checkbox"
+                className="toggle toggle-primary mx-2"
+                checked={isToggle}
+              />
             </div>
           </div>
         </div>

@@ -2,9 +2,10 @@ import React from "react";
 import { DynamicStar } from "react-dynamic-star";
 import { SiCampaignmonitor } from "react-icons/si";
 import { BsPeopleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const CourseDetalsBanner = ({ detailsData }) => {
-  const { img, title, price, instuctor_name, rating, desc_title, review } =
+  const {id, img, title, price, instuctor_name, rating, desc_title, review } =
     detailsData;
   return (
     <div>
@@ -45,15 +46,17 @@ const CourseDetalsBanner = ({ detailsData }) => {
             </div>
 
             <div className="w-full mt-8 flex items-center gap-5">
-              <button className="btn btn-outline text-blue-700 hover:bg-orange-600">
-                <SiCampaignmonitor className="text-xl mr-2"></SiCampaignmonitor>{" "}
-                Enroll Now
-              </button>
+              <Link to={`/course/${id}/checkout`}>
+                <button className="btn btn-outline text-blue-700 hover:bg-orange-600">
+                  <SiCampaignmonitor className="text-xl mr-2"></SiCampaignmonitor>
+                  Enroll Now
+                </button>
+              </Link>
               <p className="text-xl font-semibold text-gray-700">${price}</p>
             </div>
             <div>
               <p className="text-lg mt-2 ml-2 flex items-center gap-2">
-                <BsPeopleFill className="text-xl text-orange-600"></BsPeopleFill>{" "}
+                <BsPeopleFill className="text-xl text-orange-600"></BsPeopleFill>
                 14,293 People Already Enroll
               </p>
             </div>
