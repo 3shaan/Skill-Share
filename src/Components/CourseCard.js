@@ -7,7 +7,7 @@ const CourseCard = ({ courseData }) => {
   const {id, img, title, price, instuctor_name, rating, desc_title } = courseData;
   return (
     <div className="lg:ml-5 group px-5 lg:px-0 ">
-      <div className="card lg:w-80 bg-base-100 shadow-xl relative  overflow-hidden">
+      <div className="card w-72 lg:w-80 bg-base-100 shadow-xl relative  overflow-hidden">
         <div className="p-3 group-hover:opacity-20 transition-opacity duration-700">
           <figure>
             <img className="h-56 w-80" src={img} alt="Shoes" />
