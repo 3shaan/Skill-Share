@@ -9,13 +9,13 @@ const CheckOut = () => {
     return (
       <div className="w-11/12 mx-auto">
         <p className="text-3xl mt-3 flex gap-3 items-center">
-          Check Out <AiOutlineArrowRight />{" "}
+          Check Out <AiOutlineArrowRight />
         </p>
-        <div className="flex ">
-          <div className="w-7/12 mx-auto">
+        <div className="lg:flex ">
+          <div className="lg:w-7/12 mx-auto">
             <CheckOutLeft />
           </div>
-          <div className="w-3/12 mx-auto">
+          <div className="lg:w-3/12 mx-auto mt-10 lg:mt-0">
             <CheckOutRight courseData={courseData}></CheckOutRight>
           </div>
         </div>

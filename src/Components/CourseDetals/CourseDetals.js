@@ -4,7 +4,6 @@ import { useLoaderData } from 'react-router-dom';
 import { useReactToPrint } from 'react-to-print';
 import CourseDetalsBanner from '../CourseDetals/CourseDetalsBanner';
 import CourseDesc from './CourseDesc';
-import CourseInfo from './CourseInfo';
 
 const CourseDetals = () => {
   const detailsData = useLoaderData();
@@ -23,7 +22,7 @@ const CourseDetals = () => {
         </div>
         <div ref={downloadRef}>
           <div className="border-b border-gray-300">
-            <ul className="text-lg flex h-14 items-center w-7/12 justify-around">
+            <ul className="grid grid-cols-3 text-lg lg:flex lg:h-14 items-center lg:w-7/12 lg:justify-around  mx-auto lg:gap-20 px-4">
               <li className="text-blue-700 font-semibold cursor-pointer">
                 About
               </li>
@@ -36,10 +35,10 @@ const CourseDetals = () => {
               <li className="hover:underline hover:text-blue-700 cursor-pointer">
                 FAQ
               </li>
-              <li className="hover:underline hover:text-blue-700 cursor-pointer">
+              <li className="hover:underline hover:text-blue-700 cursor-pointer w-full col-span-2 mt-2">
                 <button
                   onClick={handlePrint}
-                  className="bg-blue-600 rounded-lg text-white px-2 hover:bg-blue-500"
+                  className="bg-blue-600  rounded-lg text-white lg:px-2 hover:bg-blue-500"
                 >
                   Download Course Description
                 </button>
@@ -47,10 +46,9 @@ const CourseDetals = () => {
             </ul>
           </div>
           <div className="flex w-11/12 mx-auto">
-            <div >
+            <div>
               <CourseDesc detailsData={detailsData}></CourseDesc>
             </div>
-            
           </div>
         </div>
       </div>

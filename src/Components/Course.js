@@ -9,10 +9,10 @@ const Course = () => {
   return (
     <div className="w-11/12 mx-auto">
       <h1 className="text-4xl text-center mt-2 mb-5">Our All Course</h1>
-      <div className="flex justify-between">
+      <div className="flex lg:justify-between flex-col lg:flex-row">
         <div>
           <ul>
-            {courseData.map((data) => {
+            {courseData?.map((data) => {
               return (
                 <li key={data.id} className="text-2xl">
                   <Link
@@ -30,8 +30,8 @@ const Course = () => {
           </ul>
         </div>
         <div className="w-7/12">
-          <div className="grid grid-cols-2 gap-5">
-            {courseData.map((data) => (
+          <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
+            {courseData?.map((data) => (
               <CourseCard key={data.id} courseData={data}></CourseCard>
             ))}
           </div>

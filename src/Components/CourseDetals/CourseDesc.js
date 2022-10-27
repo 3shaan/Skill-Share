@@ -6,8 +6,8 @@ const CourseDesc = ({ detailsData }) => {
   const { skill } = detailsData;
   return (
     <div>
-      <div className="flex justify-between">
-        <div className="border border-gray-500 rounded-sm my-8 p-4 w-6/12 ">
+      <div className="flex lg:justify-between flex-col">
+        <div className="border border-gray-500 rounded-sm my-8 p-4 lg:w-6/12 ">
           <h1 className="text-xl mb-3">What You will Learn:</h1>
           <div className="grid grid-cols-2 gap-6">
             {skill.map((data, index) => {
@@ -22,7 +22,7 @@ const CourseDesc = ({ detailsData }) => {
             })}
           </div>
         </div>
-        <div className="w-5/12">
+        <div className="lg:w-5/12">
           <CourseInfo></CourseInfo>
         </div>
       </div>

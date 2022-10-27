@@ -24,11 +24,11 @@ const Blogs = () => {
 
   return (
     <div className="w-10/12 mx-auto mt-10">
-      <div className="grid grid-cols-2 gap-y-10">
+      <div className="grid lg:grid-cols-2 gap-y-10">
         {blogsData.map((blog) => {
           return (
             <div key={blog.id}>
-              <div className="card w-96 h-[424px] bg-base-100 shadow-xl">
+              <div className="card lg:w-96 h-[424px] bg-base-100 shadow-xl">
                 <figure>
                   <img className="h-56" src={blog.img} alt="Shoes" />
                 </figure>

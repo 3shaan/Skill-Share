@@ -5,7 +5,7 @@ const CheckOutLeft = () => {
     <div>
       <div className="mt-5 shadow-lg p-4 rounded-lg">
         <p className="text-2xl">Billing Adress</p>
-        <div className="flex justify-between gap-5 my-5">
+        <div className="lg:flex justify-between gap-5 my-5">
           <div className="w-full">
             <div className="flex justify-between">
               <p>Country</p>
@@ -43,18 +43,19 @@ const CheckOutLeft = () => {
         </div>
         <div>
           <p className="text-2xl font-semibold">Paymanet Mathod</p>
-          <div className="flex justify-between gap-5">
+          <div className="lg:flex justify-between gap-5">
             <div class="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700 w-full">
               <input
                 id="bordered-checkbox-1"
                 type="checkbox"
                 value=""
                 name="bordered-checkbox"
-                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                class="checkbox checkbox-primary" 
+                
               />
               <label
                 for="bordered-checkbox-1"
-                class="py-4 lg:ml-10 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                class="py-4 ml-10 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 <img
                   className="h-12"
@@ -63,17 +64,17 @@ const CheckOutLeft = () => {
                 />
               </label>
             </div>
-            <div class="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700 w-full">
+            <div class="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700 w-full mt-5 lg:mt-0">
               <input
                 id="bordered-checkbox-2"
                 type="checkbox"
                 value=""
                 name="bordered-checkbox"
-                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                class=" checkbox checkbox-primary"
               />
               <label
                 for="bordered-checkbox-2"
-                class="py-4 lg:ml-10 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                class="py-4 ml-10 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 <img
                   className="h-12"

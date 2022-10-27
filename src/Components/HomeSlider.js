@@ -7,7 +7,7 @@ import CourseCard from "./CourseCard";
 import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-const WebProgram = () => {
+const HomeSlider = () => {
   const { courseData } = useContext(authContext);
   const NextArrow = ({ className, style, onClick }) => {
     return (
@@ -39,6 +39,41 @@ const WebProgram = () => {
     autoplay: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 2004,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1324,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1039,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 680,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -62,4 +97,4 @@ const WebProgram = () => {
   );
 };
 
-export default WebProgram;
+export default HomeSlider;
